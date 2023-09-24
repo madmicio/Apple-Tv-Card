@@ -25,12 +25,11 @@ class AppleTvCard extends LitElement {
         const textToShow = stateObj.attributes.media_title || this.config.name || "apple tv";
         // Larghezza del div con ID "container"
         const containerWidth = 24;
-    
+        const remote = this.config.remote;
         // Verifica se la lunghezza del testo è maggiore della larghezza del container
         const shouldScroll = textToShow.length > containerWidth;
         var speed = Math.round((textToShow.length / containerWidth) * 6);
         const full_screen = this.config.full_screen ? this.config.full_screen : false;
-
 		
          return html`
          <!-- style="enable-background:new 0 0 1312 2848;background: linear-gradient(155deg, rgba(60,66,80,1) 0%, rgba(23,26,37,1) 42%, rgba(21,25,35,1) 100%);" (backgrous di svg(-->
@@ -529,7 +528,7 @@ class AppleTvCard extends LitElement {
                 return html`
                 <div class="border" type="button" >
                     <div class="button">
-                        <div class="image" style="background-image: url('${source_map.image}')" @click=${e => this._source(source_map.source_name)}>
+                        <div class="image" style="background-image: url('${ source_map.image ? source_map.image : `/local/community/Apple-Tv-Card/logo/${source_map.source_name}.png`}')" @click=${e => this._source(source_map.source_name)}>
                         </div>
                     </div>
                 </div>
@@ -557,8 +556,11 @@ class AppleTvCard extends LitElement {
 
     setConfig(config) {
         if (!config.entity) {
-          throw new Error("You need to define entities");
+          throw new Error("You need to define Apple Tv mediaplayer entities");
         }
+        if (!config.remote) {
+            throw new Error("You need to define your Apple Tv Remote");
+          }
         this.config = config;
       }
 
@@ -569,12 +571,12 @@ class AppleTvCard extends LitElement {
     _atv_turn_on_off() {
         if (this.hass.states[this.config.entity].state === "standby") {
             this.hass.callService("remote", "send_command", {
-                "entity_id": "remote.atv",
+                "entity_id": this.config.remote,
                 "command": "home_hold"
             });
         } else {
             this.hass.callService("remote", "send_command", {
-                "entity_id": "remote.atv",
+                "entity_id": this.config.remote,
                 "command": "suspend"
             });
         }
@@ -584,12 +586,12 @@ class AppleTvCard extends LitElement {
     _atv_play_pause() {
         if (this.hass.states[this.config.entity].state === "playing") {
             this.hass.callService("remote", "send_command", {
-                "entity_id": "remote.atv",
+                "entity_id": this.config.remote,
                 "command": "pause"
             });
         } else {
             this.hass.callService("remote", "send_command", {
-                "entity_id": "remote.atv",
+                "entity_id": this.config.remote,
                 "command": "play"
             });
         }
@@ -598,7 +600,7 @@ class AppleTvCard extends LitElement {
 
 	_command(command_type) {
         this.hass.callService("remote", "send_command", {
-                "entity_id": "remote.atv",
+                "entity_id": this.config.remote,
                 "command": command_type
         });
     }
