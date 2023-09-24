@@ -88,6 +88,7 @@ you can also use a hybrid configuration as shown above.
 not all icons are preloaded. if you install an application that does not have an image file in the logo folder, you will need to create one specifically.
 creates png files with the following dimensions: 450px x 206px.
 the square icons have a size of 10.8mm
+### share your images either with a pull request or upload to the iusses, so we can enrich the logo package
 
 ## Full Screen Mode
 To enable the full screen function you need to insert the following code into config
