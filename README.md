@@ -27,11 +27,11 @@
 
   ```yaml
 resources:
-url: /hacsfiles/Apple-Tv-Card/apple-tv-Card.js
+url: /hacsfiles/Apple-Tv-Card/Apple-Tv-Card.js
 type: module
 ```
 
-1. Download and copy `apple-tv-Card.js` from (https://github.com/madmicio/Apple-Tv-Card) into your custom components  directory.
+1. Download and copy `Apple-Tv-Card.js` from (https://github.com/madmicio/Apple-Tv-Card) into your custom components  directory.
 
 2. Add a reference `` from (https://github.com/madmicio/Apple-Tv-Card) into your custom components  directory.
 ` inside your resources config:
@@ -62,18 +62,13 @@ type: module
 # lovelace config: custom view
 ```yaml
 type: custom:apple-tv-card
-entity: media_player.soggiorno_2
-name: 'apple tv soggiorno'
-full_screen: true
+entity: media_player.appletv
+remote: remote.atv
 sources:
-  - image: /local/custom_components/Apple-Tv-Card/soruces_logo/infuse.png 
-    source_name: 'Infuse'
-  - image: /local/custom_components/Apple-Tv-Card/soruces_logo/disney.png
-    source_name: 'Disney+'
-  - image: /local/custom_components/Apple-Tv-Card/soruces_logo/netflix.png
-    source_name: 'Netflix'
-  - image: /local/custom_components/Apple-Tv-Card/soruces_logo/primevideo.png
-    source_name: 'Prime Video'
+  - source_name: 'Infuse'
+  - source_name: 'Disney+'
+  - source_name: 'Netflix'
+  - source_name: 'Prime Video'
   - image: /local/custom_components/Apple-Tv-Card/soruces_logo/youtube.png
     source_name: 'YouTube'
   - image: /local/custom_components/Apple-Tv-Card/soruces_logo/dazn.png
@@ -84,3 +79,36 @@ sources:
     source_name: 'DAZN'
 ```
 #### full_scree: & sources: are options
+the card will use the exact name of the app to load the images present in the ".../Apple-Tv-Card/logo" folder
+if you proceed with the manual installation you will need to define the image path.
+equally if you want to give the image file a different name you will have to specify the path as shown in the example above.
+you can also use a hybrid configuration as shown above.
+
+ ### Additional images
+not all icons are preloaded. if you install an application that does not have an image file in the logo folder, you will need to create one specifically.
+creates png files with the following dimensions: 450px x 206px.
+the square icons have a size of 10.8mm
+
+## Full Screen Mode
+To enable the full screen function you need to insert the following code into config
+
+```yaml
+full_screen: true
+```
+configure the backgroung and kiock_mode as in the example below
+
+```yaml
+kiosk_mode:
+  hide_sidebar: true
+  hide_header: true
+      
+
+views:
+  - title: Apple tv
+    background: 'linear-gradient(155deg, rgba(60,66,80,1) 0%, rgba(23,26,37,1) 42%, rgba(21,25,35,1) 100%)'
+    type: custom:apple-tv-card
+    entity: media_player.appletv
+    remote: remote.atv
+    sources:
+      ...
+```
