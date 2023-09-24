@@ -38,7 +38,7 @@ type: module
 
   ```yaml
   resources:
-    - url: /local/"your_directory"/Apple-Tv-Card/apple-tv-Card.js
+    - url: /local/"your_directory"/Apple-Tv-Card/Apple-Tv-Card.js
       type: module
   ```
 
