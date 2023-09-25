@@ -21,7 +21,7 @@
 ## hacs Card install
 1. add madmicio/Apple-Tv-Card as custom reposity
 
-2. Find and install `lettore impronte digitali` plugin
+2. Find and install `Apple Tv Remote Control` plugin
 
 3. Add a reference  inside your resources config:
 
