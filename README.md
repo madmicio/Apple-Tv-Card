@@ -15,7 +15,7 @@
 
 ### It can be used as a normal card to insert into the UI. (default option, full screen mode must be enabled in config if necessary.
 
-### Manual install
+
 
 
 ## hacs Card install
@@ -31,6 +31,7 @@ url: /hacsfiles/Apple-Tv-Card/Apple-Tv-Card.js
 type: module
 ```
 
+## Manual install
 1. Download and copy `Apple-Tv-Card.js` from (https://github.com/madmicio/Apple-Tv-Card) into your custom components  directory.
 
 2. Add a reference `` from (https://github.com/madmicio/Apple-Tv-Card) into your custom components  directory.
@@ -40,6 +41,16 @@ type: module
   resources:
     - url: /local/"your_directory"/Apple-Tv-Card/Apple-Tv-Card.js
       type: module
+  ```
+
+  ## Font installation
+this custom card uses a specific font to display information.
+
+Add a reference  inside your resources config:
+  ```yaml
+  resources:
+    - url: /hacsfiles/Apple-Tv-Card/font.css
+      type: css
   ```
 
   ### Main Options
