@@ -28,6 +28,7 @@ class AppleTvCard extends LitElement {
         const shouldScroll = textToShow.length > containerWidth;
         var speed = Math.round((textToShow.length / containerWidth) * 6);
         const full_screen = this.config.full_screen ? this.config.full_screen : false;
+        const hide_text = this.config.hide_text ? this.config.hide_text : false;
 		
          return html`
          <!-- style="enable-background:new 0 0 1312 2848;background: linear-gradient(155deg, rgba(60,66,80,1) 0%, rgba(23,26,37,1) 42%, rgba(21,25,35,1) 100%);" (backgrous di svg(-->
@@ -437,11 +438,13 @@ class AppleTvCard extends LitElement {
             </g>
         </g>
         <foreignobject transform="matrix(0.6833 0 0 1 125 120)" width="1548" height="130">
+            ${ hide_text == false ? html`
             <div class="scrolling-container" id="container">
                 <div class="text-diplay ${shouldScroll ? 'scrolling-text' : ''} "  style="--speed: ${speed}s;" id="text">
                 ${textToShow}
                 </div>
             </div>
+            ` : html` `}
         </foreignobject>
         <foreignobject transform="matrix(1 0 0 1 84 1200)"    width="1151" height="1850">
             ${this._show_commands ? html`
