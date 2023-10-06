@@ -62,7 +62,7 @@ Add a reference  inside your resources config:
 | `remote` | string | **Required** | remote.YOUR_APPLE_TV_REMOTE | the apple tv remote enetity |
 | `full_screen` | string | **Option** | false  | sets the appearance of the card. by default the card is displayed as a normal card. if = true, the card will be set up for full screen display |
 | `sources` | string | **Option**  |  | configures the list of quick access sources. maximum number 6. |
-| `hide_text` | string | false  | true - false | se impostato a true nasconte l'elemento text display |
+| `hide_text` | string | false  | true - false | if set to true it hides the text display element |
 
   ### source config
   if configured the surge option needs the following elements:
